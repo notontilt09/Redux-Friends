@@ -15,7 +15,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.props.getFriends(this.state.newFriend)
+    this.props.getFriends()
   }
 
   handleChanges = e => {
@@ -29,7 +29,7 @@ class App extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.addFriend();
+    this.props.addFriend(this.state.newFriend);
   }
 
   render() {
@@ -37,8 +37,8 @@ class App extends Component {
       <div className="App">
         <div className='Friends'>
           {this.props.friends && 
-            this.props.friends.map(friend => 
-              <div className='friend'>
+            this.props.friends.map((friend, index) => 
+              <div key={index} className='friend'>
                 <h3>{friend.name}</h3>
                 <h4>Age: {friend.age}</h4>
                 <h4>Email: {friend.email}</h4>

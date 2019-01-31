@@ -14,7 +14,6 @@ const initialState = {
 }
 
 const friendReducer = (state = initialState, action) => {
-    console.log(action);
     switch(action.type) {
         case FETCH_FRIENDS_START:
             return {
@@ -39,9 +38,7 @@ const friendReducer = (state = initialState, action) => {
                 friends: action.payload
             }
         default:
-            return {
-                state
-            }
+            return state
     }
 }
 
