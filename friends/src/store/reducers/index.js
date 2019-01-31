@@ -33,6 +33,11 @@ const friendReducer = (state = initialState, action) => {
                 error: action.payload,
                 isFetchingFriends: false
             }
+        case ADD_FRIENDS_SUCCESS:
+            return {
+                ...state,
+                friends: action.payload
+            }
         default:
             return {
                 state
