@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
-import { getFriends, addFriend } from './store/actions'
+import { getFriends, addFriend, deleteFriend } from './store/actions'
 
 import './App.css';
 
@@ -39,6 +39,11 @@ class App extends Component {
     })
   }
 
+  deleteFriend = (e, id) => {
+    e.preventDefault();
+    this.props.deleteFriend(id);
+  }
+
   render() {
     return (
       <div className="App">
@@ -55,6 +60,7 @@ class App extends Component {
                 <h3>{friend.name}</h3>
                 <h4>Age: {friend.age}</h4>
                 <h4>Email: {friend.email}</h4>
+                <button onClick={(e) => this.deleteFriend(e, friend.id)}>Delete Friend</button>
               </div>  
           )}
         </div>
@@ -70,4 +76,4 @@ const mapStateToProps = state => ({
   error: state.error
 })
 
-export default connect(mapStateToProps, { getFriends, addFriend })(App);
+export default connect(mapStateToProps, { getFriends, addFriend, deleteFriend })(App);

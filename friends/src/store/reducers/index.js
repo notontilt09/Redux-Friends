@@ -5,6 +5,8 @@ import {
     ADD_FRIENDS_START,
     ADD_FRIENDS_SUCCESS,
     ADD_FRIENDS_FAIL,
+    DELETE_FRIEND_SUCCESS,
+    DELETE_FRIEND_FAIL  
 } from '../actions'
 
 const initialState = {
@@ -36,6 +38,21 @@ const friendReducer = (state = initialState, action) => {
             return {
                 ...state,
                 friends: action.payload
+            }
+        case ADD_FRIENDS_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            }
+        case DELETE_FRIEND_SUCCESS:
+            return {
+                ...state,
+                friends: action.payload
+            }
+        case DELETE_FRIEND_FAIL:
+            return {
+                ...state,
+                error: action.payload
             }
         default:
             return state
