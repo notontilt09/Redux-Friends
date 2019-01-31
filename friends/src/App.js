@@ -30,11 +30,24 @@ class App extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.addFriend(this.state.newFriend);
+    this.setState({
+      newFriend: {
+        name: '',
+        age: '',
+        email: ''
+      }
+    })
   }
 
   render() {
     return (
       <div className="App">
+        <form onSubmit={this.handleSubmit} className='add-friend'>
+            <input onChange={this.handleChanges} value={this.state.newFriend.name} type='text' name='name' placeholder='name' />
+            <input onChange={this.handleChanges} value={this.state.newFriend.age} type='number' name='age' placeholder='age' />
+            <input onChange={this.handleChanges} value={this.state.newFriend.email} type='text' name='email' placeholder='email' />
+            <button type='submit'>Add Friend</button>
+        </form>
         <div className='Friends'>
           {this.props.friends && 
             this.props.friends.map((friend, index) => 
@@ -45,12 +58,7 @@ class App extends Component {
               </div>  
           )}
         </div>
-        <form onSubmit={this.handleSubmit} className='add-friend'>
-            <input onChange={this.handleChanges} type='text' name='name' placeholder='name' />
-            <input onChange={this.handleChanges} type='number' name='age' placeholder='age' />
-            <input onChange={this.handleChanges} type='text' name='email' placeholder='email' />
-            <button type='submit'>Add Friend</button>
-        </form>
+        
       </div>
     );
   }
